@@ -9,18 +9,20 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'rhysd/vim-color-spring-night'
-Plugin 'davidklsn/vim-sialoquent'
 Plugin 'tomasr/molokai'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ConradIrwin/vim-bracketed-paste'
-" The following are examples of different formats supported.
+Plugin 'scrooloose/syntastic'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
-" plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'mileszs/ack.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'Valloric/YouCompleteMe'
+"plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 " Git plugin not hosted on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
@@ -52,6 +54,8 @@ syntax on
 
 set t_Co=256
 set background=dark
+set nowrap
+set cursorline
 colorscheme molokai
 
 " Fix filas vacias en otro color.
@@ -65,15 +69,52 @@ endif
 set mouse=a
 set hidden
 set incsearch
+set number
+set relativenumber
+" coloca pantalla partida hacia la derecha
+set splitright
+" coloca pantalla partida hacia abajo
+set splitbelow
 
 
 " Atajos
-nnoremap <F7> :bp<CR>
-nnoremap <F8> :bn<CR>
+nnoremap <F5> :NERDTreeClose<CR>:bd<CR>
+nnoremap <F2> :bp<CR>
+nnoremap <F3> :bn<CR>
 nnoremap <F12> :NERDTreeToggle<CR>
+nnoremap <F4> :Ack<Space>
+if has ('nvim') " Nvim only commands
+  nnoremap <F9> :split<CR>:terminal<CR>
+  :tnoremap <Esc> <C-\><C-n>
+endif
+" segun ft (experimental)
+" mapea de forma local a cada buffer, dependiente de su tipo de archivo.
+" ver :h :map-local
+" autocmd permite ejecutar comandos en operaciones e/s
+" ver :h au
+augroup c_cpp_shortcuts
+  autocmd!
+  autocmd FileType c nnoremap <buffer> <F6> :! make<CR>
+  autocmd FileType cpp nnoremap <buffer> <F6> :! make<CR>
+  autocmd FileType python nnoremap <F6> :! ls<CR>
+  set tabstop=2
+  set softtabstop=2
+  set shiftwidth=2
+  set expandtab
+augroup END
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 set ttimeoutlen=10
 let g:airline_powerline_fonts=0
+
+" Syntastic
+set statusline+=%#warningsmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
