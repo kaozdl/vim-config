@@ -5,4 +5,4 @@ set expandtab
 
 " PEP-8
 set textwidth=120
-set colorcolumn=+1
+set colorcolumn=121

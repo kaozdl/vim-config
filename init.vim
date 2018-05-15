@@ -2,7 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -10,31 +10,18 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomasr/molokai'
-Plugin 'tomtom/tcomment_vim'
+Plugin 'lu-ren/SerialExperimentsLain'
+Plugin 'vim-airline/vim-airline-themes'
+" Plugins
 Plugin 'scrooloose/nerdtree'
 Plugin 'ConradIrwin/vim-bracketed-paste'
-Plugin 'scrooloose/syntastic'
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+Plugin 'Yggdroot/indentLine'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'Valloric/YouCompleteMe'
-"plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-"Plugin 'ascenator/L9', {'name': 'newL9'}
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -75,7 +62,7 @@ set relativenumber
 set splitright
 " coloca pantalla partida hacia abajo
 set splitbelow
-
+set conceallevel=0
 
 " Atajos
 nnoremap <F5> :NERDTreeClose<CR>:bd<CR>
@@ -92,23 +79,27 @@ endif
 " ver :h :map-local
 " autocmd permite ejecutar comandos en operaciones e/s
 " ver :h au
-augroup c_cpp_shortcuts
-  autocmd!
-  autocmd FileType c nnoremap <buffer> <F6> :! make<CR>
-  autocmd FileType cpp nnoremap <buffer> <F6> :! make<CR>
-  autocmd FileType python nnoremap <F6> :! ls<CR>
-  set tabstop=2
-  set softtabstop=2
-  set shiftwidth=2
-  set expandtab
-augroup END
+"augroup c_cpp_shortcuts
+"  autocmd!
+"  autocmd FileType c nnoremap <buffer> <F6> :! make<CR>
+"  autocmd FileType cpp nnoremap <buffer> <F6> :! make<CR>
+"  autocmd FileType python nnoremap <F6> :! ls<CR>
+"  set tabstop=2
+"  set softtabstop=2
+"  set shiftwidth=2
+"  set expandtab
+"augroup END
+
+
+" IndentLine
+let g:indentLine_char = '¦'
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 set ttimeoutlen=10
-let g:airline_powerline_fonts=0
-
+let g:airline_powerline_fonts=1
+let g:airline_theme='dark'
 " Syntastic
 set statusline+=%#warningsmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -118,3 +109,5 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+"YCM
+let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
