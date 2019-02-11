@@ -21,20 +21,10 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'Valloric/YouCompleteMe'
-"plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-"Plugin 'ascenator/L9', {'name': 'newL9'}
-
+Plugin 'tell-k/vim-autopep8'
+Plugin 'gryf/pylint-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -87,21 +77,6 @@ if has ('nvim') " Nvim only commands
   nnoremap <F9> :split<CR>:terminal<CR>
   :tnoremap <Esc> <C-\><C-n>
 endif
-" segun ft (experimental)
-" mapea de forma local a cada buffer, dependiente de su tipo de archivo.
-" ver :h :map-local
-" autocmd permite ejecutar comandos en operaciones e/s
-" ver :h au
-augroup c_cpp_shortcuts
-  autocmd!
-  autocmd FileType c nnoremap <buffer> <F6> :! make<CR>
-  autocmd FileType cpp nnoremap <buffer> <F6> :! make<CR>
-  autocmd FileType python nnoremap <F6> :! ls<CR>
-  set tabstop=2
-  set softtabstop=2
-  set shiftwidth=2
-  set expandtab
-augroup END
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -117,4 +92,4 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
