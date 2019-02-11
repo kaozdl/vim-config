@@ -2,7 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -10,16 +10,15 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomasr/molokai'
-Plugin 'tomtom/tcomment_vim'
+Plugin 'lu-ren/SerialExperimentsLain'
+Plugin 'vim-airline/vim-airline-themes'
+" Plugins
 Plugin 'scrooloose/nerdtree'
 Plugin 'ConradIrwin/vim-bracketed-paste'
-Plugin 'scrooloose/syntastic'
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+Plugin 'Yggdroot/indentLine'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'mileszs/ack.vim'
-Plugin 'kien/ctrlp.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'gryf/pylint-vim'
@@ -65,7 +64,7 @@ set relativenumber
 set splitright
 " coloca pantalla partida hacia abajo
 set splitbelow
-
+set conceallevel=0
 
 " Atajos
 nnoremap <F5> :NERDTreeClose<CR>:bd<CR>
@@ -82,8 +81,8 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 set ttimeoutlen=10
-let g:airline_powerline_fonts=0
-
+let g:airline_powerline_fonts=1
+let g:airline_theme='dark'
 " Syntastic
 set statusline+=%#warningsmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
