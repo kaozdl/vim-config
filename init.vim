@@ -2,7 +2,10 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.config/nvim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
+if has('nvim')
+  set rtp+=~/.config/nvim/bundle/Vundle.vim
+endif
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -20,10 +23,16 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'mileszs/ack.vim'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'Valloric/YouCompleteMe'
+" Python
 Plugin 'tell-k/vim-autopep8'
 Plugin 'gryf/pylint-vim'
+" Javascript / React
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+" Rust
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -83,12 +92,4 @@ set laststatus=2
 set ttimeoutlen=10
 let g:airline_powerline_fonts=1
 let g:airline_theme='dark'
-" Syntastic
-set statusline+=%#warningsmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:airline_exclude_preview = 1
